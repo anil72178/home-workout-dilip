@@ -29,10 +29,10 @@ struct SessionOptions: Hashable {
 }
 
 enum SessionPlan {
-    static let warmUpBlocks: [Block] = [("Dynamic Arms Stretch", 30), ("Hip Circle", 30), ("Leg Swing", 30)]
+    static let warmUpBlocks: [Block] = [("Dynamic Arm Swings", 30), ("Standing Hip Circles", 30), ("Leg Swing Front to Back", 30)]
         .compactMap { n, s in Catalog.move(n).map { Block(exercise: $0, seconds: s) } }
 
-    static let coolDownBlocks: [Block] = [("Standing Hamstring Stretch", 30), ("Child Pose", 40)]
+    static let coolDownBlocks: [Block] = [("Standing Hamstring Stretch", 30), ("Child's Pose", 40)]
         .compactMap { n, s in Catalog.move(n).map { Block(exercise: $0, seconds: s) } }
 
     /// Moves that involve jumping; swapped out in quiet mode.

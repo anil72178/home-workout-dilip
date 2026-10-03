@@ -284,7 +284,7 @@ private struct FocusQuestion: View {
     private func sample(for region: BodyRegion) -> Exercise? {
         switch region {
         case .full: Catalog.move("Burpee")
-        case .core: Catalog.move("Plank")
+        case .core: Catalog.move("Forearm Plank")
         case .upper: Catalog.move("Push-up")
         case .lower: Catalog.move("Glute Bridge")
         }
@@ -295,9 +295,9 @@ private struct LevelQuestion: View {
     @Environment(AppState.self) private var app
 
     private let options: [(Level, String, String, String)] = [
-        (.beginner, "Just getting started", "Knee push-ups feel like plenty", "Knee Push-ups"),
+        (.beginner, "Just getting started", "Knee push-ups feel like plenty", "Knee Push-up"),
         (.intermediate, "I move regularly", "A set of 10 push-ups is doable", "Push-up"),
-        (.advanced, "Bring on the challenge", "Explosive push-ups? Sure.", "Plyometric Push-ups"),
+        (.advanced, "Bring on the challenge", "Explosive push-ups? Sure.", "Clap Push-up"),
     ]
 
     var body: some View {

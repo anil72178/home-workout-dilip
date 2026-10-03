@@ -14,9 +14,9 @@ struct WelcomeView: View {
     @State private var restoring = false
 
     private let columns: [[String]] = [
-        ["Jumping Jack", "Glute Bridge", "Downward Dog Hold", "Mountain Climber", "Air Squat"],
-        ["Push-up", "Plank", "Burpee", "Child Pose", "Forward Lunges"],
-        ["High Knee", "Side Plank", "Cat Cow Back Stretch", "Jump Squat", "Superman"],
+        ["Jumping Jack", "Glute Bridge", "Downward Dog", "Mountain Climber", "Air Squat"],
+        ["Push-up", "Forearm Plank", "Burpee", "Child's Pose", "Forward Lunge"],
+        ["High Knees", "Side Plank", "Cat-Cow Stretch", "Jump Squat", "Superman"],
     ]
 
     var body: some View {

@@ -10,6 +10,10 @@ struct MovesLibraryView: View {
     @State private var region: BodyRegion?
     @State private var kind: MoveKind?
     @State private var quietOnly = false
+    @State private var gear: Equipment?
+
+    /// Only show kit filters that the library actually uses.
+    private let gearOptions: [Equipment] = Equipment.allCases.filter { g in Catalog.exercises.contains { $0.gear == g } }
 
     private let kinds: [MoveKind] = [.strength, .cardio, .stretching, .mobility, .plyometrics]
 
@@ -18,6 +22,7 @@ struct MovesLibraryView: View {
             (region == nil || $0.muscle.region == region) &&
             (kind == nil || $0.kind == kind) &&
             (!quietOnly || !SessionPlan.isLoud($0)) &&
+            (gear == nil || $0.gear == gear) &&
             (query.isEmpty || $0.name.localizedCaseInsensitiveContains(query) || $0.muscle.title.localizedCaseInsensitiveContains(query))
         }
     }
@@ -77,6 +82,14 @@ struct MovesLibraryView: View {
                 }
                 .padding(.horizontal, Metric.gutter)
             }
+            ScrollView(.horizontal) {
+                HStack(spacing: 8) {
+                    ForEach(gearOptions) { g in
+                        Button { gear = gear == g ? nil : g } label: { Chip(title: g.title, symbol: g.symbol, selected: gear == g) }
+                    }
+                }
+                .padding(.horizontal, Metric.gutter)
+            }
         }
         .buttonStyle(.plain)
         .scrollIndicators(.hidden)
@@ -116,6 +129,7 @@ struct ExerciseDetailView: View {
                             Tag(title: exercise.kind.title, tint: exercise.kind.tint)
                             Tag(title: exercise.level.title, tint: Palette.ink.opacity(0.4))
                             if !SessionPlan.isLoud(exercise) { Tag(title: "Quiet", tint: Palette.mint) }
+                            if exercise.gear != .none { Tag(title: exercise.gear.title, tint: Palette.sky) }
                         }
                     }
 

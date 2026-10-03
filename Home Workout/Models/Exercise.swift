@@ -80,6 +80,30 @@ enum Level: String, Codable, CaseIterable, Identifiable, Comparable {
     static func < (a: Level, b: Level) -> Bool { a.bars < b.bars }
 }
 
+/// The only kit a home move may need.
+enum Equipment: String, Codable, CaseIterable, Identifiable {
+    case none, mat, band, chair, wall
+    var id: String { rawValue }
+    var title: String {
+        switch self {
+        case .none: "No equipment"
+        case .mat: "Mat"
+        case .band: "Band"
+        case .chair: "Chair"
+        case .wall: "Wall"
+        }
+    }
+    var symbol: String {
+        switch self {
+        case .none: "figure.stand"
+        case .mat: "rectangle.portrait"
+        case .band: "point.topleft.down.to.point.bottomright.curvepath"
+        case .chair: "chair.fill"
+        case .wall: "square.split.1x2"
+        }
+    }
+}
+
 struct Exercise: Identifiable, Codable, Hashable {
     let id: String
     let name: String
@@ -91,6 +115,10 @@ struct Exercise: Identifiable, Codable, Hashable {
     let steps: [String]
     let about: String
     let bg: String
+    /// Missing in older catalogs; treated as bodyweight.
+    let equipment: Equipment?
+
+    var gear: Equipment { equipment ?? .none }
 
     /// Background colour of the studio in the clip, so cards can blend into it.
     var stageColor: Color { Color(hex: bg) }

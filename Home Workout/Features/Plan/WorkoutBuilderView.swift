@@ -47,7 +47,7 @@ struct WorkoutBuilderView: View {
                         if blocks.isEmpty {
                             VStack(spacing: 12) {
                                 HStack(spacing: -16) {
-                                    ForEach(["Push-up", "Air Squat", "Plank"].compactMap(Catalog.move)) { ex in
+                                    ForEach(["Push-up", "Air Squat", "Forearm Plank"].compactMap(Catalog.move)) { ex in
                                         MoveStage(exercise: ex, radius: 16).frame(width: 64, height: 64)
                                             .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Palette.canvas, lineWidth: 3))
                                     }
